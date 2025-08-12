@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Vinamra Bhavsar – Reservation</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f5f7fa; margin: 0; padding: 20px;">
+
+<h2 style="text-align: center; color: #333;">Reservation Form</h2>
+
+<form th:action="@{/reserve}" th:object="${reservation}" method="post" 
+      style="max-width: 500px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 2px 8px rgba(0,0,0,0.1);">
+
+  <fieldset style="border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 5px;">
+    <legend style="font-weight: bold; color: #444;">Flight</legend>
+    <label style="display: block; margin-top: 10px;">Flight #: 
+      <input th:field="*{flightNumber}" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+    <label style="display: block; margin-top: 10px;">Origin: 
+      <input th:field="*{origin}" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+    <label style="display: block; margin-top: 10px;">Destination: 
+      <input th:field="*{destination}" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+    <label style="display: block; margin-top: 10px;">Travel Date (YYYY-MM-DD): 
+      <input th:field="*{travelDate}" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+    <label style="display: block; margin-top: 10px;">Seats: 
+      <input th:field="*{seats}" type="number" min="1" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+  </fieldset>
+
+  <fieldset style="border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 5px;">
+    <legend style="font-weight: bold; color: #444;">Customer</legend>
+    <label style="display: block; margin-top: 10px;">First Name: 
+      <input th:field="*{customer.firstName}" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+    <label style="display: block; margin-top: 10px;">Last Name: 
+      <input th:field="*{customer.lastName}" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+    <label style="display: block; margin-top: 10px;">Email: 
+      <input th:field="*{customer.email}" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+    <label style="display: block; margin-top: 10px;">Phone: 
+      <input th:field="*{customer.phone}" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+  </fieldset>
+
+  <fieldset style="border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 5px;">
+    <legend style="font-weight: bold; color: #444;">Payment</legend>
+    <label style="display: block; margin-top: 10px;">Method: 
+      <input th:field="*{payment.method}" placeholder="CARD/CASH/INTERAC" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+    <label style="display: block; margin-top: 10px;">Amount: 
+      <input th:field="*{payment.amount}" step="0.01" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+    <label style="display: block; margin-top: 10px;">Currency: 
+      <input th:field="*{payment.currency}" value="CAD" style="width: 100%; padding: 8px; margin-top: 5px;" />
+    </label>
+  </fieldset>
+
+  <!-- Show validation errors -->
+  <div th:if="${#fields.hasErrors('*')}" style="margin-bottom: 20px;">
+    <p style="color:red; font-weight: bold;">Please correct the errors:</p>
+    <ul style="color:red; padding-left: 20px;">
+      <li th:each="e : ${#fields.errors('*')}" th:text="${e}"></li>
+    </ul>
+  </div>
+
+  <button type="submit" 
+          style="background-color: #007BFF; color: white; padding: 10px 15px; border: none; border-radius: 5px; width: 100%; cursor: pointer; font-size: 16px;">
+    Submit Reservation
+  </button>
+</form>
+
+</body>
+</html>

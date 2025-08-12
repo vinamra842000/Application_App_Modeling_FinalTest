@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Reservation Saved</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f5f7fa; margin: 0; padding: 20px;">
+
+<div style="max-width: 600px; margin: 40px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 2px 8px rgba(0,0,0,0.1); text-align: center;">
+  
+  <h2 style="color: #28a745; margin-bottom: 20px;">✅ Reservation Created</h2>
+  
+  <p style="font-size: 16px; margin: 10px 0;">
+    <strong>ID:</strong> <span th:text="${reservation.id}"></span>
+  </p>
+  
+  <p style="font-size: 16px; margin: 10px 0;">
+    <strong>Flight:</strong> <span th:text="${reservation.flightNumber}"></span>
+  </p>
+  
+  <p style="font-size: 16px; margin: 10px 0;">
+    From <strong><span th:text="${reservation.origin}"></span></strong> 
+    to <strong><span th:text="${reservation.destination}"></span></strong>
+    on <span th:text="${reservation.travelDate}"></span>
+  </p>
+  
+  <p style="font-size: 16px; margin: 10px 0;">
+    <strong>Customer:</strong> 
+    <span th:text="${reservation.customer.firstName}"></span>
+    <span th:text="${reservation.customer.lastName}"></span>
+    (<span th:text="${reservation.customer.email}"></span>)
+  </p>
+  
+  <p style="font-size: 16px; margin: 10px 0;">
+    <strong>Payment:</strong> 
+    <span th:text="${reservation.payment.amount}"></span>
+    <span th:text="${reservation.payment.currency}"></span>
+    via <span th:text="${reservation.payment.method}"></span>
+  </p>
+  
+  <p style="margin-top: 20px;">
+    <a th:href="@{/}" 
+       style="display: inline-block; background-color: #007BFF; color: white; padding: 10px 15px; border-radius: 5px; text-decoration: none; font-size: 16px;">
+      ➕ Create Another Reservation
+    </a>
+  </p>
+
+</div>
+
+</body>
+</html>
